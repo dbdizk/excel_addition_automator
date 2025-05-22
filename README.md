@@ -90,3 +90,10 @@ python add.py
 ## 🧙 Author
 
 Built with care and automation magic by Onni 🪄
+
+```
+
+---
+
+Let me know if you'd like to include screenshots, example inputs/outputs, or to generate a `requirements.txt` to go with it!
+```
