@@ -1,8 +1,3 @@
-Absolutely! Here's the full, clean, and ready-to-copy `README.md` in a single code block:
-
----
-
-```markdown
 # 🧪 Menetelmäkoelista Automation Script
 
 This Python script automates the process of adding new welding test methods to a structured Excel workbook (`.xlsm`). It ensures data consistency across linked sheets, automatically handles checkboxes, inserts logic validation rows, and updates Power Query M-code accordingly.
