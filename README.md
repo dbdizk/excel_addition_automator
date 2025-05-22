@@ -1,24 +1,28 @@
-Here's a polished `README.md` tailored to your project:
+Absolutely! Here's the full, clean, and ready-to-copy `README.md` in a single code block:
 
 ---
 
 ```markdown
 # 🧪 Menetelmäkoelista Automation Script
 
-This Python script automates the process of adding new welding test methods to a structured Excel file (`DOC410523rev6_Menetelmäkoelista.xlsm`). The system is designed to maintain data integrity across multiple linked tables and sheets, with support for logic links and checkboxes.
+This Python script automates the process of adding new welding test methods to a structured Excel workbook (`.xlsm`). It ensures data consistency across linked sheets, automatically handles checkboxes, inserts logic validation rows, and updates Power Query M-code accordingly.
 
 ---
 
 ## ✨ Features
 
+- ✅ Prompts the user to select the original Excel file
+- ✅ Creates a timestamped copy (e.g., `muokattu_menetelma_2025-05-21_14-30.xlsm`)
 - ✅ Adds a new entry to the **`WPS data`** table (`Table2`)
-- ✅ Asks user for inputs column-by-column (empty values allowed)
+- ✅ Collects user input column-by-column (empty values allowed)
 - ✅ Automatically increments the **"Rivi"** field
-- ✅ Adds new row to the selected **material sheet** (e.g. `Väli 1`) in the correct table (`vali1`, `vali2`, ...)
-- ✅ Copies modern **Excel checkbox** from previous row in `Column1`
-- ✅ Adds a linked row to **logic test sheet** (`logiikkatestit`) in the correct table (`vali1logic`, `vali2logic`, ...)
-- ✅ Automatically inserts a new row to avoid overlapping other tables
-- ✅ Writes dynamic `XLOOKUP` formula that connects logic and material sheets
+- ✅ Adds a row to the correct **material table** (e.g., `vali1`, `vali2`, ...) in the selected worksheet
+- ✅ Inserts a row into the Excel sheet to prevent overlaps with other tables
+- ✅ Copies modern **Excel checkbox** from the previous row into `Column1`
+- ✅ Adds a new row to the **logic sheet** (`logiikkatestit`) in the correct table (`vali1logic`, `vali2logic`, ...)
+- ✅ Dynamically writes an `XLOOKUP` formula linking logic to material data
+- ✅ Directly modifies **Power Query M-code** to add a new condition for the newly added WPQR
+- ✅ All logic is handled through a single Python executable without requiring Excel macros
 
 ---
 
@@ -27,9 +31,10 @@ This Python script automates the process of adding new welding test methods to a
 ```
 
 .
-├── DOC410523rev6\_Menetelmäkoelista.xlsm     # Source Excel file (input)
-├── muokattu\_menetelmä\_TIMESTAMP.xlsm        # Automatically created copy (output)
-├── add.py                                   # Main automation script
+├── DOC410523rev6\_Menetelmäkoelista.xlsm     # Source Excel file (must be in same folder as the .exe or script)
+├── muokattu\_menetelma\_YYYY-MM-DD\_HH-MM.xlsm # Automatically generated copy with timestamp
+├── add.py                                   # Main automation script (editable)
+├── add.exe                                  # Compiled executable (optional for office-wide use)
 
 ````
 
@@ -37,63 +42,54 @@ This Python script automates the process of adding new welding test methods to a
 
 ## ▶️ How to Use
 
-1. **Install requirements**
+### 1. Install Requirements (for Python version)
 
-Make sure you have Excel installed (Windows only) and install the required Python package:
+Ensure Excel is installed (Windows only) and run:
 
 ```bash
 pip install xlwings
 ````
 
-2. **Run the script**
+### 2. Run the Script
 
 ```bash
 python add.py
 ```
 
-3. **Follow the prompts**
-   You'll be asked to:
+Alternatively, launch the compiled `add.exe`.
 
+### 3. Follow the Prompts
+
+* Enter the original Excel file name (`.xlsm`)
 * Enter the new WPQR number
-* Select the material sheet (e.g. Väli 1, Väli 2, ...)
-* Provide row-by-row input for WPS data and material sheet
-* The rest is automated
+* Select the correct material sheet (e.g., Väli 1, Väli 2, ...)
+* Fill in fields for WPS data and material table row
+* The script will automate everything else: table updates, checkboxes, logic rows, and Power Query edits
 
 ---
 
 ## 📝 Notes
 
-* The script **copies the original Excel file** to a new one with a timestamp before making changes
-* The checkbox in `Column1` must already exist in the previous row
-* The new `XLOOKUP` formula dynamically points to the correct material table (e.g., `vali1`, `vali2`)
-* Excel **must be in English locale** for formulas to work (`,` instead of `;` and English function names)
+* The checkbox in `Column1` must already exist in the previous row — the script copies its formatting
+* Excel formulas like `XLOOKUP` must use English locale (with `,` not `;`)
+* Power Query connections must follow the format: `valiX_results` and `valiX_Parameters`
+* All tables must already be present in the Excel file (e.g., `vali1`, `vali1logic`, `vali1_Parameters`, etc.)
 
 ---
 
 ## 🔒 Requirements
 
-* Python 3.7+
+* Python 3.7+ (only for `.py` version)
 * Microsoft Excel (Windows only)
 * `xlwings`
+* Excel file with:
 
----
-
-## 💡 Roadmap Ideas
-
-* Add GUI for input
-* Automate Power Query updates (`Close & Load`)
-* Support for rollback or undo
-* Integration with certificate expiration notifications
+  * Properly named sheets and tables (`valiX`, `valiXlogic`, `valiX_Parameters`)
+  * Existing modern Excel checkbox in `Column1`
 
 ---
 
 ## 🧙 Author
 
-Built with care and automation magic by Onni 🪄
-
-```
-
----
-
-Let me know if you'd like to include screenshots, example inputs/outputs, or to generate a `requirements.txt` to go with it!
-```
+Built with care and automation magic by **Onni** 🪄
+Crafted for reliability and scalability in welding documentation workflow.
